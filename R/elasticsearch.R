@@ -19,6 +19,10 @@ es.search.scroll <- function(es.hostname="http://locahost:9200",
   es.http.response <- RCurl::getForm(url, style='post', .opts = list(postfields=es.query), curl=ch)
   es.result <- jsonlite::fromJSON(es.http.response)
 
+  if (!is.null(es.result$error)) {
+    stop(es.result$error)
+  }
+
   total <- es.result$hits$total
   message(paste("Total results=", total))
 

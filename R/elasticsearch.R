@@ -45,7 +45,7 @@ es.search.scroll <- function(es.hostname="http://locahost:9200",
       }
 
       hits <- transform.es.f(es.result)
-      hits.all <- rbindlist(list(hits.all, hits))
+      hits.all <- rbindlist(list(hits.all, hits), fill=TRUE)
 
       message(paste("Retrieved", nrow(es.result$hits$hits), ". Total:", nrow(hits.all)))
 
